@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include gada_electronics *.css
+recursive-include gada_electronics *.csv
+recursive-include gada_electronics *.html
+recursive-include gada_electronics *.ico
+recursive-include gada_electronics *.js
+recursive-include gada_electronics *.json
+recursive-include gada_electronics *.md
+recursive-include gada_electronics *.png
+recursive-include gada_electronics *.py
+recursive-include gada_electronics *.svg
+recursive-include gada_electronics *.txt
+recursive-exclude gada_electronics *.pyc
