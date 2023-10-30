@@ -1,0 +1,130 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2023-10-26 02:36:19.499767",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "party",
+  "account",
+  "column_break_tduow",
+  "posting_date",
+  "allow_to_change_posting_date",
+  "due_date",
+  "section_break_awzye",
+  "debit_amount",
+  "credit_amount",
+  "column_break_vj0t4",
+  "voucher_type",
+  "voucher_number",
+  "is_cancelled"
+ ],
+ "fields": [
+  {
+   "default": "Today",
+   "fieldname": "posting_date",
+   "fieldtype": "Date",
+   "label": "Posting Date",
+   "read_only_depends_on": "eval:doc.allow_to_change_posting_date===0"
+  },
+  {
+   "default": "Today",
+   "fieldname": "due_date",
+   "fieldtype": "Date",
+   "label": "Due Date"
+  },
+  {
+   "fieldname": "party",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Party",
+   "options": "Party"
+  },
+  {
+   "fieldname": "account",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Account",
+   "options": "Account"
+  },
+  {
+   "fieldname": "debit_amount",
+   "fieldtype": "Currency",
+   "label": "Debit Amount",
+   "options": "currency:PHP"
+  },
+  {
+   "fieldname": "credit_amount",
+   "fieldtype": "Currency",
+   "label": "Credit Amount",
+   "options": "currency:PHP"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_cancelled",
+   "fieldtype": "Check",
+   "label": "Is Cancelled"
+  },
+  {
+   "fieldname": "voucher_type",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Voucher Type"
+  },
+  {
+   "fieldname": "voucher_number",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Voucher Number"
+  },
+  {
+   "fieldname": "section_break_awzye",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_vj0t4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_tduow",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "allow_to_change_posting_date",
+   "fieldtype": "Check",
+   "label": "Allow to Change Posting Date"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-10-26 11:55:53.994484",
+ "modified_by": "Administrator",
+ "module": "Gada Electronics",
+ "name": "GL Entry",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "voucher_number",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "title_field": "voucher_number",
+ "track_changes": 1
+}

@@ -1,0 +1,154 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2023-10-25 23:11:45.413983",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "add_new_journal_entry_section",
+  "naming_series",
+  "allow_to_change_naming_series",
+  "party",
+  "column_break_nlsmy",
+  "posting_date",
+  "allow_to_change_posting_date",
+  "section_break_z9hzz",
+  "accounting_entries_table",
+  "section_break_r7upf",
+  "total_debit",
+  "total_credit",
+  "column_break_ulslk",
+  "description_of_transaction",
+  "difference",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "accounting_entries_table",
+   "fieldtype": "Table",
+   "label": "Accounting entries table",
+   "options": "Accounting Entries Table",
+   "reqd": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Journal Entry",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "allow_to_change_naming_series",
+   "fieldtype": "Check",
+   "label": "Allow to change Naming Series"
+  },
+  {
+   "default": "0",
+   "fieldname": "total_debit",
+   "fieldtype": "Currency",
+   "label": "Total Debit",
+   "options": "currency:PHP"
+  },
+  {
+   "default": "0",
+   "fieldname": "total_credit",
+   "fieldtype": "Currency",
+   "label": "Total Credit",
+   "options": "currency:PHP"
+  },
+  {
+   "default": "0",
+   "fieldname": "difference",
+   "fieldtype": "Currency",
+   "label": "Difference",
+   "options": "currency:PHP",
+   "read_only": 1
+  },
+  {
+   "fieldname": "add_new_journal_entry_section",
+   "fieldtype": "Section Break",
+   "label": "Add New Journal Entry"
+  },
+  {
+   "fieldname": "column_break_nlsmy",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_z9hzz",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_ulslk",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_r7upf",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "description_of_transaction",
+   "fieldtype": "Data",
+   "label": "Description of transaction"
+  },
+  {
+   "default": "JOURNAL-ENT-.YYYY.-",
+   "fieldname": "naming_series",
+   "fieldtype": "Data",
+   "label": "Naming Series",
+   "read_only_depends_on": "eval:doc.allow_to_change_naming_series===0"
+  },
+  {
+   "fieldname": "party",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Party",
+   "options": "Party",
+   "reqd": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "posting_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Posting Date",
+   "read_only_depends_on": "eval:doc.allow_to_change_posting_date===0",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "allow_to_change_posting_date",
+   "fieldtype": "Check",
+   "label": "Allow to Change Posting Date"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2023-10-30 03:03:15.177861",
+ "modified_by": "Administrator",
+ "module": "Gada Electronics",
+ "name": "Journal Entry",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

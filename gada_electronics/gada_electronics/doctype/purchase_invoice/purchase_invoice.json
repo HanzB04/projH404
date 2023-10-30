@@ -1,0 +1,179 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2023-10-21 21:12:31.555997",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "create_new_purchase_invoice_section",
+  "naming_series",
+  "allow_to_edit_naming_series",
+  "supplier",
+  "column_break_79moq",
+  "posting_date",
+  "allow_posting_date_change",
+  "payment_due_date",
+  "section_break_1bghu",
+  "items_table",
+  "allow_item_rate_change",
+  "section_break_kmknz",
+  "total_qty",
+  "column_break_uybcq",
+  "total_amount",
+  "section_break_eozhg",
+  "credit_to",
+  "expense_account",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "default": "PIN-.YYYY.-",
+   "fieldname": "naming_series",
+   "fieldtype": "Data",
+   "label": "Naming Series",
+   "read_only_depends_on": "eval:doc.allow_to_edit_naming_series===0",
+   "reqd": 1
+  },
+  {
+   "fieldname": "supplier",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Supplier",
+   "options": "Party",
+   "reqd": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "posting_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Posting Date",
+   "read_only_depends_on": "eval:doc.allow_posting_date_change===0",
+   "reqd": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "payment_due_date",
+   "fieldtype": "Date",
+   "label": "Payment Due Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "items_table",
+   "fieldtype": "Table",
+   "label": "Items table",
+   "options": "Sales Invoice Item"
+  },
+  {
+   "default": "0.000",
+   "fieldname": "total_qty",
+   "fieldtype": "Float",
+   "label": "Total Qty",
+   "read_only": 1
+  },
+  {
+   "default": "0.00",
+   "fieldname": "total_amount",
+   "fieldtype": "Currency",
+   "label": "Total Amount",
+   "options": "currency:PHP",
+   "read_only": 1
+  },
+  {
+   "fieldname": "credit_to",
+   "fieldtype": "Link",
+   "label": "Credit To",
+   "options": "Account",
+   "reqd": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Purchase Invoice",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "allow_item_rate_change",
+   "fieldtype": "Check",
+   "label": "Allow Item Rate Change"
+  },
+  {
+   "fieldname": "column_break_79moq",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_1bghu",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_uybcq",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_kmknz",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "section_break_eozhg",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "allow_posting_date_change",
+   "fieldtype": "Check",
+   "label": "Allow  Posting Date Change"
+  },
+  {
+   "fieldname": "create_new_purchase_invoice_section",
+   "fieldtype": "Section Break",
+   "label": "Create New Purchase Invoice"
+  },
+  {
+   "fieldname": "expense_account",
+   "fieldtype": "Link",
+   "label": "Expense Account",
+   "options": "Account",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "allow_to_edit_naming_series",
+   "fieldtype": "Check",
+   "label": "Allow to edit Naming Series"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2023-10-24 15:06:47.006520",
+ "modified_by": "Administrator",
+ "module": "Gada Electronics",
+ "name": "Purchase Invoice",
+ "name_case": "UPPER CASE",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

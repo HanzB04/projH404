@@ -1,0 +1,111 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:{item_code}-{item_name}",
+ "creation": "2023-10-20 12:22:43.989806",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "secbreak",
+  "item_code",
+  "item_name",
+  "column_break_mr320",
+  "duom",
+  "uom_size",
+  "standard_selling_rate",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "item_code",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Item Code",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "item_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Item Name"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "duom",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Default Unit of Measurement",
+   "options": "Nos\nInch\nMeter\nPound\nKilogram\nPieces\nBox",
+   "reqd": 1
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "default": "0.00",
+   "fieldname": "standard_selling_rate",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Standard Selling Rate",
+   "options": "currency:PHP"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Item",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_mr320",
+   "fieldtype": "Column Break"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "default": "0.000",
+   "depends_on": "eval:doc.duom!=\"Nos\"",
+   "fieldname": "uom_size",
+   "fieldtype": "Float",
+   "label": "Input",
+   "mandatory_depends_on": "eval:doc.duom!=\"Nos\""
+  },
+  {
+   "fieldname": "secbreak",
+   "fieldtype": "Section Break",
+   "label": "Gada Electronics - Add New Item"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2023-10-26 18:04:32.385493",
+ "modified_by": "Administrator",
+ "module": "Gada Electronics",
+ "name": "Item",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "search_fields": "item_name",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "title_field": "item_code",
+ "track_changes": 1
+}

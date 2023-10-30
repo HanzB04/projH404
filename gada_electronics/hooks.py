@@ -187,4 +187,3 @@ user_data_fields = [
 # auth_hooks = [
 #	"gada_electronics.auth.validate"
 # ]
-
