@@ -7,6 +7,10 @@
   {
    "chart": "PLS",
    "width": "Half"
+  },
+  {
+   "chart": "PLS-1",
+   "width": "Half"
   }
  ],
  "creation": "2023-10-26 16:22:11.844394",
@@ -16,7 +20,7 @@
  "idx": 0,
  "is_default": 1,
  "is_standard": 1,
- "modified": "2023-10-26 16:22:31.313640",
+ "modified": "2023-10-30 11:38:06.079984",
  "modified_by": "Administrator",
  "module": "Gada Electronics",
  "name": "Gada Electronics PLS",

@@ -31,17 +31,17 @@ def get_columns():
             "label": "Amount",
             "fieldtype": "Currency",
             "options": "currency",
-			"width": 250
         },
     ]
 
 def get_filtered_data(filters):
-    filter = get_filters(filters)
-    print(f"Filter: {filter}")
+    filter_conditions = get_filters(filters)
+    print(f"Filter Conditions: {filter_conditions}")
+
     filtered_data = frappe.get_all(
         doctype='GL Entry',
         fields=['account', 'debit_amount', 'credit_amount', 'is_cancelled'],
-        filters=filter,
+        filters=filter_conditions,
         or_filters=[
             ['account', 'like', '%Income%'],
             ['account', 'like', '%Expense%'],
@@ -51,21 +51,16 @@ def get_filtered_data(filters):
     return filtered_data
 
 def get_filters(filters):
-    filter = []
-    for key, value in filters.items():
-        if filters.get(key):
-            if key == "account":
-                filter.append({key: ['like', f'{value}%']})
-            if filters.get("posting_date"):
-                filter.append({"posting_date": [">=", filters.get("posting_date")]})
-            if filters.get("due_date"):
-                filter.append({"due_date": ["<=", filters.get("due_date")]})
-            if filters.get("voucher_type"):
-                filter.append({"voucher_type": filters.get("voucher_type")})
-            if filters.get("income_account"):
-                filter.append({"account": filters.get("income_account")})
+    filter_conditions = []
 
-    return filter
+    for key, value in filters.items():
+        if value:
+            if key == "account":
+                filter_conditions.append(['account', 'like', f'{value}%'])
+            elif key == "posting_date":
+                filter_conditions.append(['posting_date', 'between', [filters.get("posting_date"), filters.get("end_date")]])
+
+    return filter_conditions
 
 def calculate_totals(data, filters):
     result_data = []
@@ -75,7 +70,6 @@ def calculate_totals(data, filters):
     expense_data = []
 
     for row in data:
-        # Skip canceled entries
         if row.get("is_cancelled"):
             continue
 

@@ -22,6 +22,7 @@ function setInitialValues(frm) {
     const partyType = frm.doc.party_type;
     if (partyType === 'Customer') {
         frm.set_value('payment_type', 'Receive');
+        frm.set_value('party', '');
         frm.set_query('party', function() {
             return {
                 filters: {
@@ -31,6 +32,7 @@ function setInitialValues(frm) {
         });
     } else if (partyType === 'Supplier') {
         frm.set_value('payment_type', 'Pay');
+        frm.set_value('party', '');
         frm.set_query('party', function() {
             return {
                 filters: {
@@ -40,6 +42,7 @@ function setInitialValues(frm) {
         });
     } else {
         frm.set_value('payment_type', '');
+        frm.set_value('party', '');
         frm.set_query('party', function() {
             return {
                 filters: {

@@ -26,21 +26,18 @@ def get_col():
             "label": "Account",
             "fieldtype": "Link",
             "options": "Account",
-            "width": 400
         },
         {
             "fieldname": "total_debit",
             "label": "Total Debit",
             "fieldtype": "Currency",
             "options": "currency:PHP",
-			"width": 250
         },
         {
             "fieldname": "total_credit",
             "label": "Total Credit",
             "fieldtype": "Currency",
             "options": "currency:PHP",
-			"width": 250
         },
     ]
 

@@ -52,14 +52,16 @@
    "fieldname": "total_debit",
    "fieldtype": "Currency",
    "label": "Total Debit",
-   "options": "currency:PHP"
+   "options": "currency:PHP",
+   "read_only": 1
   },
   {
    "default": "0",
    "fieldname": "total_credit",
    "fieldtype": "Currency",
    "label": "Total Credit",
-   "options": "currency:PHP"
+   "options": "currency:PHP",
+   "read_only": 1
   },
   {
    "default": "0",
@@ -129,7 +131,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2023-10-30 03:03:15.177861",
+ "modified": "2023-11-03 20:08:42.376213",
  "modified_by": "Administrator",
  "module": "Gada Electronics",
  "name": "Journal Entry",

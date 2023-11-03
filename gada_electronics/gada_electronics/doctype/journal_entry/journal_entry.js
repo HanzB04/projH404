@@ -1,31 +1,48 @@
-// Copyright (c) 2023, H404 and contributors
+// Copyright (c) 2023, iaiaian1 and contributors
 // For license information, please see license.txt
 
 frappe.ui.form.on('Journal Entry', {
-    // onload: function(frm) {
-    //     frm.fields_dict['accounting_entries_table'].grid.get_field('account').get_query = function(doc, cdt, cdn) {
-    //         return {
-    //             filters: {
-    //                 docstatus: 1
-    //             }
-    //         };
-    //     };
+	//refresh: function(frm) {
+	//},
 
-	// 	frm.fields_dict['accounting_entries_table'].grid.get_field('party').get_query = function(doc, cdt, cdn) {
-    //         return {
-    //             filters: {
-    //                 docstatus: 1,
-    //             }
-    //         };
-    //     };
-		
-    //     frm.get_field('party').get_query = function(doc, cdt, cdn) {
-    //         return {
-    //             filters: {
-    //                 docstatus: 1,
-    //             }
-    //         };
-    //     };
-    // }
+	before_save: function(frm) {
+		if (frm.doc.difference != 0) {
+			frappe.throw("Debit and Credit is not balanced");
+		}
+	},
 });
+
+frappe.ui.form.on('Accounting Entries Table', {
+	debit: function(frm, cdt, cdn) {
+		updateTotals(frm);
+	},
+
+	credit: function(frm, cdt, cdn) {
+		updateTotals(frm);
+	},
+
+	accounting_entries_table_remove: function(frm) {
+		updateTotals(frm);
+	},
+});
+
+function updateTotals(frm) {
+    let debit = 0;
+    let credit = 0;
+
+    frm.doc.accounting_entries_table.forEach(element => {
+        if (element.debit && !isNaN(element.debit)) {
+            debit += element.debit;
+        }
+
+        if (element.credit && !isNaN(element.credit)) {
+            credit += element.credit;
+        }
+    });
+
+    frm.set_value('total_debit', debit);
+    frm.set_value('total_credit', credit);
+    frm.set_value('difference', Math.abs(credit - debit));
+    frm.refresh();
+}
 

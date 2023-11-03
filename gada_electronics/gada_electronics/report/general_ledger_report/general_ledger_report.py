@@ -24,11 +24,15 @@ def get_col():
             "fieldtype": "Date",
         },
         {
+            "fieldname": "due_date",
+            "label": "Due Date",
+            "fieldtype": "Date",
+        },
+        {
             "fieldname": "account",
             "label": "Account",
             "fieldtype": "Link",
             "options": "Account",
-            "width": 450
         },
         {
             "fieldname": "debit_amount",
@@ -54,18 +58,11 @@ def get_col():
             "label": "Voucher Number",
             "fieldtype": "Dynamic Link",
             "options": "voucher_type",
-            "width": 120,
         },
         {
             "fieldname": "party",
             "label": "Party",
             "fieldtype": "Data",
-            "width": 250
-        },
-        {
-            "fieldname": "due_date",
-            "label": "Due Date",
-            "fieldtype": "Date",
         },
     ]
 
@@ -73,21 +70,26 @@ def filtered_data(filters):
     filter_conditions = get_filter(filters)
     data = frappe.get_all(
         doctype='GL Entry',
-        fields=['posting_date', 'account', 'debit_amount', 'credit_amount', 'voucher_type', 'voucher_number', 'party', 'due_date'],
+        fields=['posting_date', 'due_date', 'account', 'debit_amount', 'credit_amount', 'voucher_type', 'voucher_number', 'party'],
         filters=filter_conditions
     )
+
+    if not data:
+        return []
 
     data = [entry for entry in data if not entry.get('is_cancelled')]
     return data
 
 def get_filter(filters):
     filter_conditions = {}
-    
+
+    if filters.get("posting_date") and filters.get("end_date"):
+        filter_conditions["posting_date"] = ['between', [filters['posting_date'], filters['end_date']]]
+    elif filters.get("posting_date"):
+        filter_conditions["posting_date"] = ['>=', filters['posting_date']]
+
     for key, value in filters.items():
-        if value:
-            if key in ["party", "account"]:
-                filter_conditions[key] = ['like', f'{value}%']
-            elif key in ["posting_date", "due_date"]:
-                filter_conditions[key] = ['>=', value]
+        if value and key in ["party", "account"]:
+            filter_conditions[key] = ['like', f'{value}%']
 
     return filter_conditions

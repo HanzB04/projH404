@@ -5,7 +5,7 @@ import frappe
 from frappe.model.document import Document
 
 class SalesInvoice(Document):
-    
+
     @frappe.whitelist()
     def post_due(self):
         if type(self.payment_due_date) is str and type(self.posting_date) is str:
@@ -59,6 +59,40 @@ class SalesInvoice(Document):
         for entry in gl_entries:
             reverse = frappe.get_doc("GL Entry", entry.name)
             reverse.account = self.income_account if entry.account == self.debit_to else self.debit_to
+            reverse.debit_amount, reverse.credit_amount = entry.credit_amount, entry.debit_amount
+            reverse.is_cancelled = 1
+            reverse.flags.ignore_permissions = True
+            reverse.save()
+
+    def on_trash(self):
+        self.calculate_totals()
+        gl_entries = frappe.get_all(
+            "GL Entry",
+            filters={"voucher_type": "Sales Invoice", "voucher_number": self.name},
+            fields=["name", "account", "debit_amount", "credit_amount"]
+        )
+
+        for entry in gl_entries:
+            reverse = frappe.get_doc("GL Entry", entry.name)
+            reverse.account = self.income_account if entry.account == self.debit_to else self.debit_to
+            reverse.debit_amount, reverse.credit_amount = entry.credit_amount, entry.debit_amount
+            reverse.is_cancelled = 1
+            reverse.flags.ignore_permissions = True
+            reverse.save()
+
+@frappe.whitelist()
+def on_trash(doc, method):
+    if doc.doctype == "Sales Invoice":
+        doc.calculate_totals()
+        gl_entries = frappe.get_all(
+            "GL Entry",
+            filters={"voucher_type": "Sales Invoice", "voucher_number": doc.name},
+            fields=["name", "account", "debit_amount", "credit_amount"]
+        )
+
+        for entry in gl_entries:
+            reverse = frappe.get_doc("GL Entry", entry.name)
+            reverse.account = doc.income_account if entry.account == doc.debit_to else doc.debit_to
             reverse.debit_amount, reverse.credit_amount = entry.credit_amount, entry.debit_amount
             reverse.is_cancelled = 1
             reverse.flags.ignore_permissions = True

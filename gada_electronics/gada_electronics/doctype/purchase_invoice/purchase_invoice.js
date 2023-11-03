@@ -45,7 +45,7 @@ frappe.ui.form.on('Purchase Invoice', {
 		frm.set_query('credit_to', () => {
 			return {
 				filters: {
-					account_type: 'Asset',
+					account_type: 'Liability',
 				}
 			}
 		})
@@ -76,6 +76,9 @@ frappe.ui.form.on('Sales Invoice Item', {
     },
     rate: function(frm, cdt, cdn) {
         calc_amount_qty(frm);
+    },
+	items_table_remove: function(frm, cdt, cdn) {
+        calc_total_amount_qty(frm);
     }
 });
 

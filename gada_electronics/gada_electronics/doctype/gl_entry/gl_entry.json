@@ -32,7 +32,8 @@
    "default": "Today",
    "fieldname": "due_date",
    "fieldtype": "Date",
-   "label": "Due Date"
+   "label": "Due Date",
+   "read_only": 1
   },
   {
    "fieldname": "party",
@@ -40,7 +41,8 @@
    "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Party",
-   "options": "Party"
+   "options": "Party",
+   "read_only": 1
   },
   {
    "fieldname": "account",
@@ -48,19 +50,22 @@
    "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Account",
-   "options": "Account"
+   "options": "Account",
+   "read_only": 1
   },
   {
    "fieldname": "debit_amount",
    "fieldtype": "Currency",
    "label": "Debit Amount",
-   "options": "currency:PHP"
+   "options": "currency:PHP",
+   "read_only": 1
   },
   {
    "fieldname": "credit_amount",
    "fieldtype": "Currency",
    "label": "Credit Amount",
-   "options": "currency:PHP"
+   "options": "currency:PHP",
+   "read_only": 1
   },
   {
    "default": "0",
@@ -70,17 +75,21 @@
   },
   {
    "fieldname": "voucher_type",
-   "fieldtype": "Data",
+   "fieldtype": "Select",
    "in_list_view": 1,
    "in_standard_filter": 1,
-   "label": "Voucher Type"
+   "label": "Voucher Type",
+   "options": "Sales Invoice\nPurchase Invoice\nPayment Entry\nJournal Entry",
+   "read_only": 1
   },
   {
    "fieldname": "voucher_number",
-   "fieldtype": "Data",
+   "fieldtype": "Dynamic Link",
    "in_list_view": 1,
    "in_standard_filter": 1,
-   "label": "Voucher Number"
+   "label": "Voucher Number",
+   "options": "voucher_type",
+   "read_only": 1
   },
   {
    "fieldname": "section_break_awzye",
@@ -98,12 +107,13 @@
    "default": "0",
    "fieldname": "allow_to_change_posting_date",
    "fieldtype": "Check",
+   "hidden": 1,
    "label": "Allow to Change Posting Date"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2023-10-26 11:55:53.994484",
+ "modified": "2023-11-03 19:47:19.604325",
  "modified_by": "Administrator",
  "module": "Gada Electronics",
  "name": "GL Entry",

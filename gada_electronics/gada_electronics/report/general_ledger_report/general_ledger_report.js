@@ -6,12 +6,12 @@ frappe.query_reports["General Ledger Report"] = {
 	"filters": [
 		{
 			"fieldname": "posting_date",
-			"label": "Posting Date",
+			"label": "Start Date",
 			"fieldtype": "Date",
 		},
 		{
-			"fieldname": "due_date",
-			"label": "Due Date",
+			"fieldname": "end_date",
+			"label": "End Date",
 			"fieldtype": "Date",
 		},
 		{
@@ -28,4 +28,3 @@ frappe.query_reports["General Ledger Report"] = {
 		},
 	]
 };
-

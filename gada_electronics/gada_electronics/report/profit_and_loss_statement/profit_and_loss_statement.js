@@ -6,12 +6,12 @@ frappe.query_reports["Profit and Loss Statement"] = {
     "filters": [
         {
             "fieldname": "posting_date",
-            "label": "Posting Date",
+            "label": "Start Date",
             "fieldtype": "Date",
         },
         {
-            "fieldname": "due_date",
-            "label": "Due Date",
+            "fieldname": "end_date",
+            "label": "End Date",
             "fieldtype": "Date",
         },
         {
